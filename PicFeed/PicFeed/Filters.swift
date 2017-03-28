@@ -13,6 +13,9 @@ enum FilterName : String {
     
     case vintage = "CIPhotoEffectTransfer"
     case backAndWhite = "CIPhotoEffectMono"
+    case chrome = "CIPhotoEffectChrome"
+    case invertColors = "CIColorInvert"
+    case fade = "CIPhotoEffectFade"
     //more cases here
 }
 

@@ -19,6 +19,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for name in CIFilter.filterNames(inCategories: nil){
+            print(name)
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +109,24 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             })
         }
         
+        let chromeAction = UIAlertAction(title: "Chrome", style: .default) { (action) in
+            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let invertAction = UIAlertAction(title: "Invert Colors", style: .default) { (action) in
+            Filters.filter(name: .invertColors, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
+        let fadeAction = UIAlertAction(title: "Fade", style: .default) { (action) in
+            Filters.filter(name: .fade, image: image, completion: { (filteredImage) in
+                self.imageView.image = filteredImage
+            })
+        }
+        
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
             self.imageView.image = Filters.originalImage
         }
@@ -113,8 +135,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         alertController.addAction(blackAndWhiteAction)
         alertController.addAction(vintageAction)
+        alertController.addAction(chromeAction)
+        alertController.addAction(invertAction)
+        alertController.addAction(fadeAction)
         alertController.addAction(resetAction)
         alertController.addAction(cancelAction)
+        
         
         self.present(alertController, animated: true, completion: nil)
         
@@ -137,13 +163,10 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
         
-//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            cameraAction.isEnabled = false
-//        }
-//        
-//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-//            actionSheetController.addAction(cameraAction)
-//        }
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraAction.isEnabled = false
+        }
+        
         
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)
