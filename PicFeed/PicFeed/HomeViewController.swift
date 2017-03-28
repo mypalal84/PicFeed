@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
-        
+        //method on HomeViewController
         self.imagePicker.delegate = self
         self.imagePicker.sourceType = sourceType
         self.present(self.imagePicker, animated: true, completion: nil)
@@ -42,16 +42,39 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     
     @IBAction func imageTapped(_ sender: Any) {
+        
         print("User Tapped Image!")
+        
         self.presentActionSheet()
     }
 
+    @IBAction func postButtonPressed(_ sender: Any) {
+
+        if let image = self.imageView.image {
+            
+            let newPost = Post(image: image)
+            
+            CloudKit.shared.save(post: newPost, completion: { (success) in
+                
+                if success {
+                    
+                    print("Saved post successfully to CloudKit!")
+                    
+                } else {
+                    
+                    print("We did NOT successfully save to CloudKit...")
+                    
+                }
+            })
+        }
+    }
     
     
     func presentActionSheet() {
         
       
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
+        //initializer^ instance of uialertcontroller
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
             self.presentImagePickerWith(sourceType: .camera)
@@ -64,8 +87,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
         
-        
-        
+//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            cameraAction.isEnabled = false
+//        }
+//        
+//        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            actionSheetController.addAction(cameraAction)
+//        }
         
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)

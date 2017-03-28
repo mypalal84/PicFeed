@@ -30,13 +30,24 @@
                                     <outletCollection property="gestureRecognizers" destination="Lw0-16-x2H" appends="YES" id="Su7-ul-mhp"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvS-U9-YZH">
+                                <rect key="frame" x="46.5" y="45" width="281" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="POST"/>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="78x-CI-jAq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="HvS-U9-YZH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1nq-gl-bua"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AAl-EF-H4E"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qyb-81-0jZ"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="RSm-0x-CIB"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="Z12-id-2b3"/>
+                            <constraint firstItem="Gqe-Lb-RhK" firstAttribute="top" secondItem="HvS-U9-YZH" secondAttribute="bottom" constant="8" id="bom-ef-sew"/>
+                            <constraint firstItem="HvS-U9-YZH" firstAttribute="width" secondItem="Gqe-Lb-RhK" secondAttribute="width" id="kv2-eT-oTP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -50,6 +61,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="-338" y="-80"/>
         </scene>
     </scenes>
 </document>
