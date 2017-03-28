@@ -50,6 +50,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func presentActionSheet() {
         
+      
         let actionSheetController = UIAlertController(title: "Source", message: "Please Select Source Type", preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
@@ -62,10 +63,17 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
+        
+        
+        
+        
         actionSheetController.addAction(cameraAction)
         actionSheetController.addAction(photoAction)
         actionSheetController.addAction(cancelAction)
         
+        actionSheetController.popoverPresentationController?.sourceView = self.view
+        actionSheetController.popoverPresentationController?.sourceRect = CGRect(x: 425, y: 425, width: 1.0, height: 1.0)
+       
         self.present(actionSheetController, animated: true, completion: nil)
         
     }
