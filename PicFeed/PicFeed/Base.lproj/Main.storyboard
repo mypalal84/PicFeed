@@ -31,7 +31,7 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvS-U9-YZH">
-                                <rect key="frame" x="46.5" y="45" width="281" height="30"/>
+                                <rect key="frame" x="46.5" y="-147" width="281" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="POST"/>
                                 <connections>
@@ -58,7 +58,7 @@
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qyb-81-0jZ"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.75" id="RSm-0x-CIB"/>
                             <constraint firstItem="Gqe-Lb-RhK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="Z12-id-2b3"/>
-                            <constraint firstItem="Gqe-Lb-RhK" firstAttribute="top" secondItem="HvS-U9-YZH" secondAttribute="bottom" constant="8" id="bom-ef-sew"/>
+                            <constraint firstItem="Gqe-Lb-RhK" firstAttribute="top" secondItem="HvS-U9-YZH" secondAttribute="bottom" constant="200" id="bom-ef-sew"/>
                             <constraint firstItem="HDq-4J-ZX7" firstAttribute="width" secondItem="Gqe-Lb-RhK" secondAttribute="width" id="jh2-TE-VBr"/>
                             <constraint firstItem="HvS-U9-YZH" firstAttribute="width" secondItem="Gqe-Lb-RhK" secondAttribute="width" id="kv2-eT-oTP"/>
                         </constraints>
@@ -66,6 +66,7 @@
                     <connections>
                         <outlet property="filterButtonTopConstraint" destination="5dZ-10-7IM" id="d4w-Vg-NOG"/>
                         <outlet property="imageView" destination="Gqe-Lb-RhK" id="nbA-B5-ulE"/>
+                        <outlet property="postButtonBottomConstraint" destination="bom-ef-sew" id="cEI-PK-oVS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
