@@ -10,8 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //creating new instance of UIImagePickerController to access it's methods
     let imagePicker = UIImagePickerController()
-    
     
     @IBOutlet weak var imageView: UIImageView!
 
@@ -19,13 +19,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var postButtonBottomConstraint: NSLayoutConstraint!
     
-
+    //overriding from super
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         filterButtonTopConstraint.constant = 8
         
