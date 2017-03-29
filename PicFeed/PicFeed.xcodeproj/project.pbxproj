@@ -376,6 +376,7 @@
 				7F54C9A11E89EC9200A88C53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

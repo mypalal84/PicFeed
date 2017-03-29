@@ -12,18 +12,16 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     let imagePicker = UIImagePickerController()
     
+    
     @IBOutlet weak var imageView: UIImageView!
 
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var postButtonBottomConstraint: NSLayoutConstraint!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for name in CIFilter.filterNames(inCategories: nil){
-            print(name)
-        }
         
     }
     
@@ -40,7 +38,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         UIView.animate(withDuration: 1.0) { 
             self.view.layoutIfNeeded()
         }
-
     }
     
     func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
