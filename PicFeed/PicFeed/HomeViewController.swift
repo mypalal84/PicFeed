@@ -10,6 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let constraintConstant : CGFloat = 8
+    
+    let animationDuration = 1.0
+    
     //creating new instance of UIImagePickerController to access it's methods
     let imagePicker = UIImagePickerController()
     
@@ -28,15 +32,15 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        filterButtonTopConstraint.constant = 8
+        filterButtonTopConstraint.constant = constraintConstant
         
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
      
-        postButtonBottomConstraint.constant = 8
+        postButtonBottomConstraint.constant = constraintConstant
         
-        UIView.animate(withDuration: 1.0) { 
+        UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
     }

@@ -37,7 +37,7 @@ class Filters {
             
             filter.setValue(coreImage, forKey: kCIInputImageKey)
             
-            //GPU context, always the same 3 lines
+            //GPU context to draw filters on, always the same 3 lines
             let options = [kCIContextWorkingColorSpace: NSNull()]
             
             guard let eaglContext = EAGLContext(api: .openGLES2) else { fatalError("Failed to create EAGLContext.") }
