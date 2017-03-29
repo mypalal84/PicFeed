@@ -13,6 +13,10 @@
 		7F54C99B1E89EC9200A88C53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F54C9991E89EC9200A88C53 /* LaunchScreen.storyboard */; };
 		7F54C9A81E89EE4D00A88C53 /* CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C9A71E89EE4D00A88C53 /* CloudKit.swift */; };
 		7F54C9AA1E89EFB600A88C53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C9A91E89EFB600A88C53 /* HomeViewController.swift */; };
+		7F54C9AD1E8AD05C00A88C53 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F54C9AC1E8AD05C00A88C53 /* CloudKit.framework */; };
+		7F54C9AF1E8AD0E100A88C53 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C9AE1E8AD0E100A88C53 /* Post.swift */; };
+		7F54C9B11E8AD36E00A88C53 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C9B01E8AD36E00A88C53 /* UIExtensions.swift */; };
+		7F54C9B31E8AE71800A88C53 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F54C9B21E8AE71800A88C53 /* Filters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		7F54C9A21E89ECB100A88C53 /* PicFeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PicFeed.entitlements; sourceTree = "<group>"; };
 		7F54C9A71E89EE4D00A88C53 /* CloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKit.swift; sourceTree = "<group>"; };
 		7F54C9A91E89EFB600A88C53 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7F54C9AC1E8AD05C00A88C53 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		7F54C9AE1E8AD0E100A88C53 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7F54C9B01E8AD36E00A88C53 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		7F54C9B21E8AE71800A88C53 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F54C9AD1E8AD05C00A88C53 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				7F54C98F1E89EC9200A88C53 /* PicFeed */,
 				7F54C98E1E89EC9200A88C53 /* Products */,
+				7F54C9AB1E8AD05C00A88C53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +88,9 @@
 		7F54C9A41E89ED8400A88C53 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7F54C9B21E8AE71800A88C53 /* Filters.swift */,
+				7F54C9AE1E8AD0E100A88C53 /* Post.swift */,
+				7F54C9B01E8AD36E00A88C53 /* UIExtensions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -99,6 +112,14 @@
 				7F54C9971E89EC9200A88C53 /* Assets.xcassets */,
 			);
 			name = Supporting;
+			sourceTree = "<group>";
+		};
+		7F54C9AB1E8AD05C00A88C53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F54C9AC1E8AD05C00A88C53 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +206,9 @@
 				7F54C9A81E89EE4D00A88C53 /* CloudKit.swift in Sources */,
 				7F54C9911E89EC9200A88C53 /* AppDelegate.swift in Sources */,
 				7F54C9AA1E89EFB600A88C53 /* HomeViewController.swift in Sources */,
+				7F54C9B31E8AE71800A88C53 /* Filters.swift in Sources */,
+				7F54C9B11E8AD36E00A88C53 /* UIExtensions.swift in Sources */,
+				7F54C9AF1E8AD0E100A88C53 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +376,7 @@
 				7F54C9A11E89EC9200A88C53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
