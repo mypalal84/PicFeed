@@ -8,6 +8,7 @@
 
 import UIKit
 
+typealias FilterCompletion = (UIImage?) -> ()
 
 enum FilterName : String {
     
@@ -19,13 +20,28 @@ enum FilterName : String {
     //more cases here
 }
 
-
-typealias FilterCompletion = (UIImage?) -> ()
-
 class Filters {
     
-    static var originalImage = UIImage()
-    //access with Filters.originalImage
+    //singleton
+    static let shared = Filters()
+    
+    var originalImage = UIImage()
+    // ^ access with Filters.originalImage
+    
+    var context: CIContext
+    
+    //true singleton
+    private init() {
+        
+        //GPU context to draw filters on, always the same 3 lines
+        let options = [kCIContextWorkingColorSpace: NSNull()]
+        
+        guard let eaglContext = EAGLContext(api: .openGLES2) else { fatalError("Failed to create EAGLContext") }
+        
+        self.context = CIContext(eaglContext: eaglContext, options: options)
+ 
+        
+    }
     
     class func filter(name: FilterName, image: UIImage, completion: @escaping FilterCompletion) {
      
@@ -37,17 +53,11 @@ class Filters {
             
             filter.setValue(coreImage, forKey: kCIInputImageKey)
             
-            //GPU context to draw filters on, always the same 3 lines
-            let options = [kCIContextWorkingColorSpace: NSNull()]
-            
-            guard let eaglContext = EAGLContext(api: .openGLES2) else { fatalError("Failed to create EAGLContext.") }
-            
-            let ciContext = CIContext(eaglContext: eaglContext, options: options)
             
             //Get final image using GPU
             guard let outputImage = filter.outputImage else { fatalError("Failed to get output image from filter.") }
             
-            if let cgImage = ciContext.createCGImage(outputImage, from: outputImage.extent) {
+            if let cgImage = Filters.shared.context.createCGImage(outputImage, from: outputImage.extent) {
                 
                 let finalImage = UIImage(cgImage: cgImage)
                 

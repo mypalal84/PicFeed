@@ -12,7 +12,7 @@ class GalleryCollectionViewLayout: UICollectionViewFlowLayout {
     
     var columns = 2
     
-    let spacing : CGFloat = 1.0
+    let spacing : CGFloat = 0.7
     
     var screenWidth : CGFloat {
         

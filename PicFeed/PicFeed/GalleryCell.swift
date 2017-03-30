@@ -10,7 +10,10 @@ import UIKit
 
 class GalleryCell: UICollectionViewCell {
     
+
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var dateLabel: UILabel!
     
     var post : Post! {
         
@@ -28,4 +31,5 @@ class GalleryCell: UICollectionViewCell {
         self.imageView.image = nil
         
     }
+    
 }

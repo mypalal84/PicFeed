@@ -113,12 +113,12 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="46D-7y-36K">
                                                     <rect key="frame" x="0.0" y="0.0" width="257" height="287"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ori-wO-aiQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="dateLabel" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ori-wO-aiQ">
                                                     <rect key="frame" x="0.0" y="262" width="257" height="25"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <attributedString key="attributedText">
-                                                        <fragment content="Label">
+                                                        <fragment content="Date">
                                                             <attributes>
                                                                 <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -139,6 +139,7 @@
                                             <constraint firstItem="46D-7y-36K" firstAttribute="leading" secondItem="FlZ-Ch-axR" secondAttribute="leading" id="hnh-dg-S0q"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="dateLabel" destination="Ori-wO-aiQ" id="Xd4-oy-zhR"/>
                                             <outlet property="imageView" destination="46D-7y-36K" id="NHs-jS-Vga"/>
                                         </connections>
                                     </collectionViewCell>
