@@ -111,7 +111,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
         if let image = self.imageView.image {
             
-            let newPost = Post(image: image)
+            let newPost = Post(image: image, date: nil)
             
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
@@ -130,7 +130,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func fitlerButtonPressed(_ sender: Any) {
         
-        guard let image = self.imageView.image else { return }
+        guard self.imageView.image != nil else { return }
         
         self.collectionViewHeightConstraint.constant = 150
         

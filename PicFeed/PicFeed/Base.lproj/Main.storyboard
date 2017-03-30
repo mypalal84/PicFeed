@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gqe-Lb-RhK">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gqe-Lb-RhK">
                                 <rect key="frame" x="47" y="83" width="281" height="500"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -159,35 +161,29 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="46D-7y-36K">
-                                                    <rect key="frame" x="0.0" y="0.0" width="257" height="287"/>
+                                                    <rect key="frame" x="13" y="8" width="231" height="231"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="46D-7y-36K" secondAttribute="height" multiplier="1:1" id="ym7-uw-ihk"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="dateLabel" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ori-wO-aiQ">
-                                                    <rect key="frame" x="0.0" y="262" width="257" height="25"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Date">
-                                                            <attributes>
-                                                                <font key="NSFont" size="18" name="AvenirNext-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE8-X7-zS6">
+                                                    <rect key="frame" x="0.0" y="239" width="257" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="46D-7y-36K" secondAttribute="trailing" id="3IR-zH-QVr"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ori-wO-aiQ" secondAttribute="trailing" id="B5U-p1-3lL"/>
-                                            <constraint firstItem="Ori-wO-aiQ" firstAttribute="leading" secondItem="FlZ-Ch-axR" secondAttribute="leading" id="BFw-6P-VLw"/>
-                                            <constraint firstItem="46D-7y-36K" firstAttribute="top" secondItem="FlZ-Ch-axR" secondAttribute="top" id="Ju0-Ri-7nC"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ori-wO-aiQ" secondAttribute="bottom" id="e5C-qt-Y5z"/>
-                                            <constraint firstAttribute="bottom" secondItem="46D-7y-36K" secondAttribute="bottom" id="hgR-nl-zcf"/>
-                                            <constraint firstItem="46D-7y-36K" firstAttribute="leading" secondItem="FlZ-Ch-axR" secondAttribute="leading" id="hnh-dg-S0q"/>
+                                            <constraint firstItem="aE8-X7-zS6" firstAttribute="leading" secondItem="FlZ-Ch-axR" secondAttribute="leading" id="1k1-QU-N6o"/>
+                                            <constraint firstItem="46D-7y-36K" firstAttribute="top" secondItem="FlZ-Ch-axR" secondAttribute="topMargin" id="CZu-q9-uxX"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="46D-7y-36K" secondAttribute="trailing" constant="5" id="JBv-VP-uii"/>
+                                            <constraint firstItem="aE8-X7-zS6" firstAttribute="top" secondItem="46D-7y-36K" secondAttribute="bottom" id="a2j-Ls-NMv"/>
+                                            <constraint firstAttribute="trailing" secondItem="aE8-X7-zS6" secondAttribute="trailing" id="ere-LT-9VH"/>
+                                            <constraint firstItem="46D-7y-36K" firstAttribute="leading" secondItem="FlZ-Ch-axR" secondAttribute="leadingMargin" constant="5" id="isp-Ay-9du"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="dateLabel" destination="Ori-wO-aiQ" id="Xd4-oy-zhR"/>
+                                            <outlet property="dateLabel" destination="aE8-X7-zS6" id="T0T-m3-2I6"/>
                                             <outlet property="imageView" destination="46D-7y-36K" id="NHs-jS-Vga"/>
                                         </connections>
                                     </collectionViewCell>
