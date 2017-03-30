@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let filterNames = [FilterName.backAndWhite, FilterName.chrome, FilterName.fade, FilterName.invertColors, FilterName.vintage]
+    
     let constraintConstant : CGFloat = 8
     
     let animationDuration = 1.0
@@ -18,6 +20,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let imagePicker = UIImagePickerController()
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
@@ -26,6 +30,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //overriding from super
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.collectionView.dataSource = self
         
     }
     
@@ -63,7 +69,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
         self.imageView.image = originalImage
             
-        Filters.shared.originalImage = originalImage
+        Filters.originalImage = originalImage
             
         }
         
@@ -138,7 +144,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-            self.imageView.image = Filters.shared.originalImage
+            self.imageView.image = Filters.originalImage
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -188,4 +194,34 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.present(actionSheetController, animated: true, completion: nil)
         
     }
+}
+
+//MARK: UICollectionView DataSource
+extension HomeViewController : UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
+        
+        guard let originalImage = Filters.originalImage else { return filterCell }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 75, height: 75)) else { return filterCell}
+                
+        let filterName = self.filterNames[indexPath.row]
+        
+        Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
+            
+            filterCell.imageView.image = filteredImage
+            
+        }
+        
+        return filterCell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return filterNames.count
+    }
+    
 }

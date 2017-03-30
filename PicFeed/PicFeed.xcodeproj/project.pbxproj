@@ -20,6 +20,7 @@
 		7FAA05BF1E8C23730016FB9E /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA05BE1E8C23720016FB9E /* GalleryViewController.swift */; };
 		7FAA05C11E8C277C0016FB9E /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA05C01E8C277C0016FB9E /* GalleryCell.swift */; };
 		7FAA05C31E8C37B20016FB9E /* GalleryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA05C21E8C37B20016FB9E /* GalleryCollectionViewLayout.swift */; };
+		7FAA05C51E8D758B0016FB9E /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA05C41E8D758B0016FB9E /* FilterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		7FAA05BE1E8C23720016FB9E /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		7FAA05C01E8C277C0016FB9E /* GalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		7FAA05C21E8C37B20016FB9E /* GalleryCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewLayout.swift; sourceTree = "<group>"; };
+		7FAA05C41E8D758B0016FB9E /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				7FAA05C01E8C277C0016FB9E /* GalleryCell.swift */,
 				7F54C9941E89EC9200A88C53 /* Main.storyboard */,
+				7FAA05C41E8D758B0016FB9E /* FilterCell.swift */,
 				7F54C9991E89EC9200A88C53 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
@@ -221,6 +224,7 @@
 				7F54C9B31E8AE71800A88C53 /* Filters.swift in Sources */,
 				7F54C9B11E8AD36E00A88C53 /* UIExtensions.swift in Sources */,
 				7F54C9AF1E8AD0E100A88C53 /* Post.swift in Sources */,
+				7FAA05C51E8D758B0016FB9E /* FilterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

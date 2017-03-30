@@ -25,10 +25,10 @@ class Filters {
     //singleton
     static let shared = Filters()
     
-    var originalImage = UIImage()
+    static var originalImage : UIImage?
     // ^ access with Filters.originalImage
     
-    var context: CIContext
+    var ciContext: CIContext
     
     //true singleton
     private init() {
@@ -38,7 +38,7 @@ class Filters {
         
         guard let eaglContext = EAGLContext(api: .openGLES2) else { fatalError("Failed to create EAGLContext") }
         
-        self.context = CIContext(eaglContext: eaglContext, options: options)
+        self.ciContext = CIContext(eaglContext: eaglContext, options: options)
  
         
     }
@@ -57,7 +57,7 @@ class Filters {
             //Get final image using GPU
             guard let outputImage = filter.outputImage else { fatalError("Failed to get output image from filter.") }
             
-            if let cgImage = Filters.shared.context.createCGImage(outputImage, from: outputImage.extent) {
+            if let cgImage = Filters.shared.ciContext.createCGImage(outputImage, from: outputImage.extent) {
                 
                 let finalImage = UIImage(cgImage: cgImage)
                 
