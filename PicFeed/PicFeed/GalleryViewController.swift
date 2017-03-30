@@ -26,7 +26,7 @@ class GalleryViewController: UIViewController {
 
         self.collectionView.dataSource = self
         
-        self.collectionView.collectionViewLayout = GalleryCollectionViewLayout(columns: 2)
+        self.collectionView.collectionViewLayout = GalleryCollectionViewLayout(columns: 1)
         
     }
     
