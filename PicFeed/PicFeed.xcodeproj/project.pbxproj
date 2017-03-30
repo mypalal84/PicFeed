@@ -109,9 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				7FAA05C01E8C277C0016FB9E /* GalleryCell.swift */,
-				7F54C9941E89EC9200A88C53 /* Main.storyboard */,
 				7FAA05C41E8D758B0016FB9E /* FilterCell.swift */,
 				7F54C9991E89EC9200A88C53 /* LaunchScreen.storyboard */,
+				7F54C9941E89EC9200A88C53 /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
