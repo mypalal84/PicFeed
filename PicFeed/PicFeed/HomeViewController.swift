@@ -8,34 +8,66 @@
 
 import UIKit
 
+import Social
+
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let filterNames = [FilterName.backAndWhite, FilterName.chrome, FilterName.fade, FilterName.invertColors, FilterName.vintage]
+    
+    let constraintConstant : CGFloat = 8
+    
+    let animationDuration = 1.0
+    
+    //creating new instance of UIImagePickerController to access it's methods
     let imagePicker = UIImagePickerController()
     
-    
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var filterButtonTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var postButtonBottomConstraint: NSLayoutConstraint!
     
-
+    //overriding from super
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView.dataSource = self
+        
+        self.collectionView.delegate = self
+        
+        setupGalleryDelegate()
+        
+    }
+    
+    func setupGalleryDelegate() {
+        
+        if let tabBarController = self.tabBarController {
+            
+            guard let viewControllers = tabBarController.viewControllers else { return }
+            
+            guard let galleryController = viewControllers[1] as? GalleryViewController else { return }
+            
+            galleryController.delegate = self
+            
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        filterButtonTopConstraint.constant = 8
+        filterButtonTopConstraint.constant = constraintConstant
         
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
      
-        postButtonBottomConstraint.constant = 8
+        postButtonBottomConstraint.constant = constraintConstant
         
-        UIView.animate(withDuration: 1.0) { 
+        UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
     }
@@ -60,6 +92,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
         Filters.originalImage = originalImage
             
+        self.collectionView.reloadData()
+            
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -79,7 +113,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
         if let image = self.imageView.image {
             
-            let newPost = Post(image: image)
+            let newPost = Post(image: image, date: nil)
             
             CloudKit.shared.save(post: newPost, completion: { (success) in
                 
@@ -98,58 +132,44 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func fitlerButtonPressed(_ sender: Any) {
         
-        guard let image = self.imageView.image else { return }
+        guard self.imageView.image != nil else { return }
         
-        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+        if self.collectionViewHeightConstraint.constant == 0 {
         
-        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
-            Filters.filter(name: .backAndWhite, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
+        self.collectionViewHeightConstraint.constant = 150
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            self.view.layoutIfNeeded()
+            
+                }
+            
+            } else {
+                
+                self.collectionViewHeightConstraint.constant = 0
+                
+                UIView.animate(withDuration: 0.5) {
+                    
+                    self.view.layoutIfNeeded()
+                
+            }
         }
+    }
+    
+    @IBAction func userLongPressed(_ sender: UILongPressGestureRecognizer) {
         
-        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
+            
+            guard let composeController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) else { return }
+            
+            composeController.add(self.imageView.image)
+            
+            self.present(composeController, animated: true, completion: nil)
+            
         }
-        
-        let chromeAction = UIAlertAction(title: "Chrome", style: .default) { (action) in
-            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-        let invertAction = UIAlertAction(title: "Invert Colors", style: .default) { (action) in
-            Filters.filter(name: .invertColors, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-        let fadeAction = UIAlertAction(title: "Fade", style: .default) { (action) in
-            Filters.filter(name: .fade, image: image, completion: { (filteredImage) in
-                self.imageView.image = filteredImage
-            })
-        }
-        
-        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-            self.imageView.image = Filters.originalImage
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(blackAndWhiteAction)
-        alertController.addAction(vintageAction)
-        alertController.addAction(chromeAction)
-        alertController.addAction(invertAction)
-        alertController.addAction(fadeAction)
-        alertController.addAction(resetAction)
-        alertController.addAction(cancelAction)
-        
-        
-        self.present(alertController, animated: true, completion: nil)
         
     }
+    
     
     func presentActionSheet() {
         
@@ -184,3 +204,111 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
 }
+
+//MARK: UICollectionView DataSource
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let filterCell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterCell.identifier, for: indexPath) as! FilterCell
+        
+        guard let originalImage = Filters.originalImage else { return filterCell }
+        
+        guard let resizedImage = originalImage.resize(size: CGSize(width: 150, height: 150)) else { return filterCell}
+                
+        let filterName = self.filterNames[indexPath.row]
+        
+        Filters.filter(name: filterName, image: resizedImage) { (filteredImage) in
+            
+            filterCell.imageView.image = filteredImage
+            
+            filterCell.filterName.text = Filters.shared.filterNames[indexPath.row]
+            
+            
+        }
+        
+        return filterCell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return filterNames.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedFilter = filterNames[indexPath.row]
+        
+        Filters.filter(name: selectedFilter, image: Filters.originalImage!) { (filteredImage) in
+            
+            self.imageView.image = filteredImage
+            
+        }
+        
+    }
+    
+}
+
+extension HomeViewController : GalleryViewControllerDelegate {
+    
+    func galleryController(didSelect image: UIImage) {
+        
+        self.imageView.image = image
+        
+        self.tabBarController?.selectedIndex = 0
+    }
+}
+
+
+
+
+//        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+//
+//        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+//            Filters.filter(name: .backAndWhite, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+//            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let chromeAction = UIAlertAction(title: "Chrome", style: .default) { (action) in
+//            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let invertAction = UIAlertAction(title: "Invert Colors", style: .default) { (action) in
+//            Filters.filter(name: .invertColors, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let fadeAction = UIAlertAction(title: "Fade", style: .default) { (action) in
+//            Filters.filter(name: .fade, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+//            self.imageView.image = Filters.originalImage
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//
+//        alertController.addAction(blackAndWhiteAction)
+//        alertController.addAction(vintageAction)
+//        alertController.addAction(chromeAction)
+//        alertController.addAction(invertAction)
+//        alertController.addAction(fadeAction)
+//        alertController.addAction(resetAction)
+//        alertController.addAction(cancelAction)
+//
+//
+//        self.present(alertController, animated: true, completion: nil)
+        

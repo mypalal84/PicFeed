@@ -6,10 +6,12 @@
 //  Copyright © 2017 A Cahn. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
-typealias PostCompletion = (Bool) -> ()
+typealias SuccessCompletion = (Bool) -> ()
+
+typealias PostsCompletion = ([Post]?) -> ()
 
 class CloudKit {
     
@@ -23,7 +25,7 @@ class CloudKit {
         
     }
     
-    func save(post: Post, completion: @escaping PostCompletion) {
+    func save(post: Post, completion: @escaping SuccessCompletion) {
 
         do {
             
@@ -57,6 +59,52 @@ class CloudKit {
             
             print("Error")
         
+        }
+    }
+    
+    func getPosts(completion: @escaping PostsCompletion) {
+        
+        let postQuery = CKQuery(recordType: "Post", predicate: NSPredicate(value: true))
+        
+        self.privateDatabase.perform(postQuery, inZoneWith: nil) { (records, error) in
+            
+            if error != nil {
+                
+                OperationQueue.main.addOperation {
+                    
+                    completion(nil)
+                    
+                }
+            }
+            
+            if let records = records {
+                
+                var posts = [Post]()
+                
+                for record in records {
+                    
+                    let date = record.creationDate
+                    
+                    if let asset = record["image"] as? CKAsset {
+                        
+                        let path = asset.fileURL.path
+                        
+                        if let image = UIImage(contentsOfFile: path) {
+                            
+                            let newPost = Post(image: image, date: date)
+                            
+                            posts.append(newPost)
+                            
+                        }
+                    }
+                }
+                
+                OperationQueue.main.addOperation {
+                    
+                    completion(posts)
+                    
+                }                
+            }
         }
     }
 }
