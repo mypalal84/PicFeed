@@ -121,6 +121,8 @@ extension GalleryViewController : UICollectionViewDataSource, UICollectionViewDe
         
         let selectedPost = self.allPosts[indexPath.row]
         
+        Filters.originalImage = selectedPost.image
+        
         delegate.galleryController(didSelect: selectedPost.image)
     }
 }
