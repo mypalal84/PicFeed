@@ -37,6 +37,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.collectionView.dataSource = self
         
+        self.collectionView.delegate = self
+        
         setupGalleryDelegate()
         
     }
@@ -255,7 +257,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 }
 
 //MARK: UICollectionView DataSource
-extension HomeViewController : UICollectionViewDataSource {
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -271,6 +273,9 @@ extension HomeViewController : UICollectionViewDataSource {
             
             filterCell.imageView.image = filteredImage
             
+            filterCell.filterName.text = Filters.shared.filterNames[indexPath.row]
+            
+            
         }
         
         return filterCell
@@ -281,6 +286,19 @@ extension HomeViewController : UICollectionViewDataSource {
         
         return filterNames.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedFilter = filterNames[indexPath.row]
+        
+        Filters.filter(name: selectedFilter, image: Filters.originalImage!) { (filteredImage) in
+            
+            self.imageView.image = filteredImage
+            
+        }
+        
+    }
+    
 }
 
 extension HomeViewController : GalleryViewControllerDelegate {

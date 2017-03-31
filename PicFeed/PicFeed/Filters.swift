@@ -21,9 +21,11 @@ enum FilterName : String {
 }
 
 class Filters {
-    
+   
     //singleton
     static let shared = Filters()
+    
+    let filterNames = ["Black & White", "Chrome", "Fade", "Invert Colors", "Vintage"]
     
     static var originalImage : UIImage?
     // ^ access with Filters.originalImage
