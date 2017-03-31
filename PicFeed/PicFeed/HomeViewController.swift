@@ -171,57 +171,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-//        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
-//        
-//        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
-//            Filters.filter(name: .backAndWhite, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//            })
-//        }
-//        
-//        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
-//            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//            })
-//        }
-//        
-//        let chromeAction = UIAlertAction(title: "Chrome", style: .default) { (action) in
-//            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//            })
-//        }
-//        
-//        let invertAction = UIAlertAction(title: "Invert Colors", style: .default) { (action) in
-//            Filters.filter(name: .invertColors, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//            })
-//        }
-//        
-//        let fadeAction = UIAlertAction(title: "Fade", style: .default) { (action) in
-//            Filters.filter(name: .fade, image: image, completion: { (filteredImage) in
-//                self.imageView.image = filteredImage
-//            })
-//        }
-//        
-//        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
-//            self.imageView.image = Filters.originalImage
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        
-//        alertController.addAction(blackAndWhiteAction)
-//        alertController.addAction(vintageAction)
-//        alertController.addAction(chromeAction)
-//        alertController.addAction(invertAction)
-//        alertController.addAction(fadeAction)
-//        alertController.addAction(resetAction)
-//        alertController.addAction(cancelAction)
-//        
-//        
-//        self.present(alertController, animated: true, completion: nil)
-        
-    
-    
     func presentActionSheet() {
         
       
@@ -310,3 +259,56 @@ extension HomeViewController : GalleryViewControllerDelegate {
         self.tabBarController?.selectedIndex = 0
     }
 }
+
+
+
+
+//        let alertController = UIAlertController(title: "Filter", message: "Please select a filter", preferredStyle: .alert)
+//
+//        let blackAndWhiteAction = UIAlertAction(title: "Black & White", style: .default) { (action) in
+//            Filters.filter(name: .backAndWhite, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let vintageAction = UIAlertAction(title: "Vintage", style: .default) { (action) in
+//            Filters.filter(name: .vintage, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let chromeAction = UIAlertAction(title: "Chrome", style: .default) { (action) in
+//            Filters.filter(name: .chrome, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let invertAction = UIAlertAction(title: "Invert Colors", style: .default) { (action) in
+//            Filters.filter(name: .invertColors, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let fadeAction = UIAlertAction(title: "Fade", style: .default) { (action) in
+//            Filters.filter(name: .fade, image: image, completion: { (filteredImage) in
+//                self.imageView.image = filteredImage
+//            })
+//        }
+//
+//        let resetAction = UIAlertAction(title: "Reset Image", style: .destructive) { (action) in
+//            self.imageView.image = Filters.originalImage
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//
+//        alertController.addAction(blackAndWhiteAction)
+//        alertController.addAction(vintageAction)
+//        alertController.addAction(chromeAction)
+//        alertController.addAction(invertAction)
+//        alertController.addAction(fadeAction)
+//        alertController.addAction(resetAction)
+//        alertController.addAction(cancelAction)
+//
+//
+//        self.present(alertController, animated: true, completion: nil)
+        

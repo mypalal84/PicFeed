@@ -70,10 +70,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gAP-NP-Ygu">
-                                                    <rect key="frame" x="0.0" y="20" width="115" height="95"/>
+                                                    <rect key="frame" x="0.0" y="20" width="0.0" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="0Cm-wb-Bzy"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvq-f4-G5d">
-                                                    <rect key="frame" x="36.5" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="-21" y="-114.5" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -82,8 +85,6 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Cvq-f4-G5d" secondAttribute="bottom" constant="94" id="15e-Ci-Gkt"/>
-                                            <constraint firstAttribute="bottom" secondItem="gAP-NP-Ygu" secondAttribute="bottom" id="6hP-ed-Cc4"/>
-                                            <constraint firstItem="Cvq-f4-G5d" firstAttribute="top" secondItem="cRd-kF-y4m" secondAttribute="top" id="8Fw-Ix-GPF"/>
                                             <constraint firstItem="gAP-NP-Ygu" firstAttribute="leading" secondItem="cRd-kF-y4m" secondAttribute="leading" id="9eB-0H-WWJ"/>
                                             <constraint firstItem="Cvq-f4-G5d" firstAttribute="centerX" secondItem="cRd-kF-y4m" secondAttribute="centerX" id="NY4-gZ-Pdd"/>
                                             <constraint firstItem="gAP-NP-Ygu" firstAttribute="top" secondItem="cRd-kF-y4m" secondAttribute="top" constant="20" id="d0I-f4-qW4"/>
@@ -233,6 +234,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="JsB-KG-dRA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="LnC-mR-9Wa">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
